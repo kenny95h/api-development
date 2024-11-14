@@ -118,7 +118,7 @@ Sample: `curl http://127.0.0.1:5000/questions?page=1`
           "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
         },
     ],
-    "currentCategory": null,
+    "currentCategory": "Entertainment",
     "categories": {
         "1": "Science",
         "2": "Art",
@@ -177,10 +177,10 @@ Sample: `curl -X DELETE http://127.0.0.1:5000/questions/2`
 
 ```json
 {
-    "question":"What is the answer?", 
-    "answer":"This is the answer", 
-    "category":"1", 
-    "difficulty":"3"
+    "question":"What is the answer?",
+    "answer":"This is the answer",
+    "category":"1",
+    "difficulty":"3"
 }
 ```
 
@@ -232,7 +232,7 @@ Sample: `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: applicat
     ],
     "success": true,
     "totalQuestions": 2,
-    "currentCategory": null,
+    "currentCategory": "Sports",
 }
 ```
 
@@ -302,5 +302,3 @@ Sample: `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: applicat
     "success": true
 }
 ```
-
-

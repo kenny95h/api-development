@@ -78,13 +78,16 @@ def create_app(test_config=None):
             abort(404)
 
         categories = Category.query.all()
+
+        # set to the category type string of the first question in questions list
+        current_category = Category.query.filter(Category.id == current_questions[0]["category"]).first().type
         
         return jsonify({
             'success': True,
             'questions': current_questions,
             'totalQuestions': len(questions),
             'categories': {category.id: category.type for category in categories},
-            'currentCategory': None
+            'currentCategory': current_category
 
         })
     
@@ -152,12 +155,14 @@ def create_app(test_config=None):
 
                 current_questions = paginate_questions(request, questions)
 
+                current_category = None if current_questions == [] else Category.query.filter(Category.id == current_questions[0]["category"]).first().type
+
                 return jsonify(
                     {
                         "success": True,
                         'questions': current_questions,
                         'totalQuestions': len(current_questions),
-                        'currentCategory': 'History'
+                        'currentCategory': current_category
                     }
                 )
             # return response for creating new question if searchTerm not in body
@@ -249,7 +254,7 @@ def create_app(test_config=None):
                 }
             )
         except:
-            abort(422)
+            abort(400)
 
     """
     @TODO:
