@@ -138,17 +138,16 @@ def create_app(test_config=None):
     """
     @app.route("/questions", methods=["POST"])
     def create_question():
-        # Get the JSON request to create new question
-        body = request.get_json()
-
-        new_question = body.get("question", None)
-        new_answer = body.get("answer", None)
-        new_category = body.get("category", None)
-        new_difficulty = body.get("difficulty", None)
-        search = body.get("searchTerm")
-
-
         try:
+            # Get the JSON request to create new question
+            body = request.get_json()
+
+            new_question = body.get("question", None)
+            new_answer = body.get("answer", None)
+            new_category = body.get("category", None)
+            new_difficulty = body.get("difficulty", None)
+            search = body.get("searchTerm")
+
             # return response for search if searchTerm available in body
             if search:
                 questions = Question.query.filter(Question.question.ilike(f'%{search.lower()}%')).all()
@@ -239,10 +238,15 @@ def create_app(test_config=None):
 
             prev_questions = body.get("previous_questions")
             quiz_category = body.get("quiz_category")['id']
-            print(f'{body.get("quiz_category")}, {body.get("quiz_category")["id"]}, {body.get("quiz_category")["type"]}')
 
-            # get questions left
-            questions = Question.query.filter(Question.category == quiz_category, Question.id.not_in(prev_questions)).all()
+            # get questions left 
+            questions = Question.query.filter(Question.id.not_in(prev_questions))
+
+            # filter by category if category is given
+            if quiz_category != 0:
+                questions = questions.filter(Question.category == quiz_category)
+            
+            questions = questions.all()
 
             # pick random question if any available
             random_question = None if len(questions) == 0 else random.choice(questions).format()

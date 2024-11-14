@@ -135,7 +135,7 @@ class TriviaTestCase(unittest.TestCase):
 
     def test_create_question_no_data_422(self):
         # get response from endpoint
-        res = self.client.post('/questions', json={'question': None})
+        res = self.client.post('/questions')
 
         # get data from response
         data = json.loads(res.data)
