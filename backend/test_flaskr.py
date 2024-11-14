@@ -4,6 +4,8 @@ import json
 
 from flaskr import create_app
 from models import db, Question, Category
+# create config file to hold local db username and password
+import config
 
 
 class TriviaTestCase(unittest.TestCase):
@@ -12,8 +14,8 @@ class TriviaTestCase(unittest.TestCase):
     def setUp(self):
         """Define test variables and initialize app."""
         self.database_name = "trivia_test"
-        self.database_user = "postgres"
-        self.database_password = "Alona1996l!"
+        self.database_user = config.test_db_user
+        self.database_password = config.test_db_pword
         self.database_host = "localhost:5432"
         self.database_path = f"postgresql://{self.database_user}:{self.database_password}@{self.database_host}/{self.database_name}"
 
@@ -220,9 +222,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Bad request')
-
-        
-
 
 
 # Make the tests conveniently executable

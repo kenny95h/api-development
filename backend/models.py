@@ -1,8 +1,11 @@
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
+# create config file to hold local db username and password
+import config
+
 database_name = 'trivia'
-database_user = 'postgres'
-database_password = 'Alona1996l!'
+database_user = config.db_user
+database_password = config.db_pword
 database_host = 'localhost:5432'
 database_path = f'postgresql://{database_user}:{database_password}@{database_host}/{database_name}'
 

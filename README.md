@@ -48,6 +48,13 @@ By making notes ahead of time, you will practice the core skill of being able to
 
 > View the [Frontend README](./frontend/README.md) for more details.
 
+### Getting Started
+
+* Base URL: 
+  * The backend app is hosted at the default, `http://127.0.0.1:5000/`, and is a Flask-based app. To  install the dependencies from backend `cd backend` then `pip install -r requirements.txt`, and then start the Flask app by setting the env `export FLASK_APP=flaskr`, then `export FLASK_ENV=development`, and run the app with `flask run`
+  * The frontend is a react app hosted on `http://localhost:3000/`, this requires NPM to manage dependencies. To install dependencies run `npm install`, and to start the app run `npm start`
+* Authentication: This version of the application does not require authentication or API keys.
+
 ## Error Handling
 
 Errors are returned as JSON objects in the following format:
