@@ -96,7 +96,7 @@ Sample: `curl http://127.0.0.1:5000/categories`
 
 * Request Arguments: provide page as an integer starting from one 
 
-* Returns: An object with a key, `questions`, that contains a list of up to 10 question objects,  a key, `categories`, that contains an object of `id: category_string` key: value pairs, a key `currentCategory` that contains the current `category_string`, a key `totalQuestions` that contains the integer value of number of total questions, and a key `success` with value `true`
+* Returns: An object with a key, `questions`, that contains a list of up to 10 question objects,  a key, `categories`, that contains an object of `id: category_string` key: value pairs,` a key `totalQuestions` that contains the integer value of number of total questions, and a key `success` with value `true`
 
 Sample: `curl http://127.0.0.1:5000/questions?page=1`
 
@@ -118,7 +118,7 @@ Sample: `curl http://127.0.0.1:5000/questions?page=1`
           "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
         },
     ],
-    "currentCategory": null,
+    "currentCategory": "Entertainment",
     "categories": {
         "1": "Science",
         "2": "Art",
@@ -178,9 +178,9 @@ Sample: `curl -X DELETE http://127.0.0.1:5000/questions/2`
 ```json
 {
     "question":"What is the answer?", 
-    "answer":"This is the answer", 
-    "category":"1", 
-    "difficulty":"3"
+    "answer":"This is the answer", 
+    "category":"1", 
+    "difficulty":"3"
 }
 ```
 
@@ -232,7 +232,7 @@ Sample: `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: applicat
     ],
     "success": true,
     "totalQuestions": 2,
-    "currentCategory": null,
+    "currentCategory": "Sports",
 }
 ```
 
@@ -302,5 +302,3 @@ Sample: `curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: applicat
     "success": true
 }
 ```
-
-

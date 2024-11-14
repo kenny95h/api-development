@@ -209,18 +209,18 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertEqual(len(data['question']), 5)
 
-    def test_get_quiz_questions_wrong_data(self):
+    def test_get_quiz_questions_no_data_400(self):
         # get response from endpoint
-        res = self.client.post('/quizzes', json={'previous_questions': [], 
-                                                'quiz_category': 'WRONG DATA'})
+        res = self.client.post('/quizzes')
 
         # get data from response
         data = json.loads(res.data)
 
         # run assert statement to confirm expected result
-        self.assertEqual(res.status_code, 422)
+        self.assertEqual(res.status_code, 400)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Request contains invalid data')
+        self.assertEqual(data['message'], 'Bad request')
+
         
 
 
